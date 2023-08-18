@@ -73,7 +73,38 @@ public class LinkedList {
 		}
 		temp.next = temp.next.next;
 	}
+
+	//implementation of reversal of a linkedlist using an iterative approach
+	public void reverseLL(){
+		Node curr = head;
+		Node prev = null;
+		Node nextPtr = null;
+
+		while(curr != null){
+			nextPtr = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = nextPtr;
+		}
+
+		head = prev;
+		return;
+	}
 	
+	//implementation of reversal of linkedlist using a recursive code
+	public void reversalRec(Node curr, Node prev){
+		//last node of the linked list
+		if(curr.next == null){
+			head = curr;
+			curr.next = prev;
+			return;
+		}
+		Node nextPtr = curr.next;
+		curr.next = prev;
+		//recursion concept
+		reversalRec(nextPtr, curr);
+	}
+
 	//implementation of displaying the linkedlist
 	public void displayLL() {
 		Node current = head;
@@ -88,7 +119,7 @@ public class LinkedList {
 		lList.insertAtEnd(4);
 		lList.insertAtEnd(8);
 		
-		System.out.println("Before insertion of 10, 1 and 19");
+		//System.out.println("Before insertion of 10, 1 and 19");
 		//lList.displayLL();
 		System.out.println();
 		
@@ -96,16 +127,24 @@ public class LinkedList {
 		lList.insertAtBeginning(1);
 		lList.insertAtBeginning(19);
 		
-		System.out.println("After insertion of 10, 1 and 19");
+		//System.out.println("After insertion of 10, 1 and 19");
 		//lList.displayLL();
 		System.out.println();
 		
 		lList.insertionAfter(lList.head.next.next.next, 13);
 		lList.displayLL();
 		System.out.println();
-
+		
+		/*
 		lList.deleteNode(3);
 		System.out.println("Linked List after deletion of the node: ");
+		lList.displayLL();
+		System.out.println();
+		*/
+
+		//lList.reverseLL();
+		lList.reversalRec(lList.head, null);
+		System.out.println("Reversal of a Linked List is : ");
 		lList.displayLL();
 		System.out.println();
 	}
