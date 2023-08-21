@@ -91,7 +91,7 @@ public class LinkedList {
 		return;
 	}
 	
-	//implementation of reversal of linkedlist using a recursive code
+	//implementation of reversal of linkedlist using a recursive approach
 	public void reversalRec(Node curr, Node prev){
 		//last node of the linked list
 		if(curr.next == null){
@@ -105,6 +105,16 @@ public class LinkedList {
 		reversalRec(nextPtr, curr);
 	}
 
+	// implementation of finding out the middle node in a linked list
+	//two pointer approach
+	public void middleNode(){
+		Node slowPtr =  head, fastPtr = head;
+		while(fastPtr != null && fastPtr.next != null){
+			slowPtr = slowPtr.next;
+			fastPtr = fastPtr.next.next;
+		}
+		System.out.println("Middle data of a given linked list is : "+slowPtr.data);
+	}
 	//implementation of displaying the linkedlist
 	public void displayLL() {
 		Node current = head;
@@ -145,7 +155,8 @@ public class LinkedList {
 		//lList.reverseLL();
 		lList.reversalRec(lList.head, null);
 		System.out.println("Reversal of a Linked List is : ");
-		lList.displayLL();
+		//lList.displayLL();
+		lList.middleNode();
 		System.out.println();
 	}
 }
