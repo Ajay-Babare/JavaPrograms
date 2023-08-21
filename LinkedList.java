@@ -115,6 +115,28 @@ public class LinkedList {
 		}
 		System.out.println("Middle data of a given linked list is : "+slowPtr.data);
 	}
+
+	//implementation of finding out the cycle in a linked list
+	//floyd's cycle detection algorithm - interview based question
+	public void detectLoop(){
+		Node slow = head, fast = head;
+		int flag = 0;
+		while(slow != null && fast != null && fast.next != null){
+			slow = slow.next;
+			fast = fast.next.next;
+			if(slow == fast){
+				flag = 1;
+				break;
+			}
+		}
+		if(flag == 0){
+			System.out.println("No loop detected");
+		}
+		else{
+			System.out.println("Loop is detected");
+		}
+	}
+
 	//implementation of displaying the linkedlist
 	public void displayLL() {
 		Node current = head;
@@ -153,10 +175,19 @@ public class LinkedList {
 		*/
 
 		//lList.reverseLL();
-		lList.reversalRec(lList.head, null);
-		System.out.println("Reversal of a Linked List is : ");
+		//lList.reversalRec(lList.head, null);
+		//System.out.println("Reversal of a Linked List is : ");
 		//lList.displayLL();
-		lList.middleNode();
+		//lList.middleNode();
+		//System.out.println();
+
+		//circular linked list
+		Node temp = lList.head;
+		while(temp.next != null){
+			temp = temp.next;
+		}
+		temp.next = lList.head;
+		lList.detectLoop();
 		System.out.println();
 	}
 }
